@@ -1,0 +1,69 @@
+.contenedor-personajes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+:host {
+  display: block;
+  background-color: #0b0c10;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  padding: 2rem;
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  background-color: #1f2833;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+
+  input,
+  select {
+    background-color: #45a29e;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    color: #0b0c10;
+    font-weight: bold;
+    min-width: 150px;
+    outline: none;
+
+    &::placeholder {
+      color: #0b0c10;
+      opacity: 0.7;
+    }
+  }
+
+  button {
+    background-color: #66fcf1;
+    color: #0b0c10;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+
+    &:hover {
+      background-color: #2ecc71;
+      transform: scale(1.05);
+    }
+  }
+}
+
+.contenedor-personajes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+p {
+  text-align: center;
+  color: #c5c6c7;
+}

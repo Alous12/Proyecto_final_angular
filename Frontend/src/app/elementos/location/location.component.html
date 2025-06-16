@@ -1,0 +1,7 @@
+<div class="tarjeta-ubicacion">
+    <p>Name: {{ubicacion?.name}}</p> 
+    <p>Type: {{ubicacion?.type}}</p>
+    <p>Dimension: {{ubicacion?.dimension}}</p>
+    <p>Total Residentes: {{ubicacion?.residents?.length}}</p>
+    <a class="btn-detalles" [routerLink]="['/detalles-ubicacion', ubicacion?.id]">Ver detalles</a>
+</div>

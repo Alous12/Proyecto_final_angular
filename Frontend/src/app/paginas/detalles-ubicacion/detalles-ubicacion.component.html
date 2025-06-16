@@ -1,0 +1,21 @@
+<div class="tarjeta-ubicacion">
+  <p>Name: {{ ubicacion?.name }}</p>
+  <p>Type: {{ ubicacion?.type }}</p>
+  <p>Total Residentes: {{ ubicacion?.residents?.length }}</p>
+
+  <div class="residentes">
+    <h4>Residentes:</h4>
+    @if (cargando) {
+      <div class="cargando">Cargando personajes...</div>
+    }
+    @else {
+        <div class="lista-personajes">
+          @for (personaje of personajes; track personaje.id) {
+            <app-character [personajes]="personaje" />
+          } @empty {
+            <div>No hay personajes en esta ubicación.</div>
+          }
+        </div>
+    }
+  </div>
+</div>

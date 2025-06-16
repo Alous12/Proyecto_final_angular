@@ -1,0 +1,19 @@
+<div class="tarjeta-personaje">
+  <img [src]="detallesPersonaje?.image" alt="Imagen de {{detallesPersonaje?.name}}" />
+  <div class="detalles">
+    <p>{{detallesPersonaje?.name}}</p>
+    <p>Creado: {{detallesPersonaje?.created}}</p>
+    <p>Estado: {{detallesPersonaje?.status}}</p>
+    <p>Especie: {{detallesPersonaje?.species}}</p>
+
+     <div *ngIf="episodios.length > 0">
+      <h4>Episodios:</h4>
+      <ul>
+        <li *ngFor="let ep of episodios">
+          {{ ep.episode }} - {{ ep.name }}
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,109 @@
+.tarjeta-ubicacion {
+  height: 130px;
+  width: 300px;
+  flex-basis: 1;
+  flex-grow: 1;
+  margin: 20px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  background-color: #1f2833;
+  border: 2px solid #66fcf1;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  transition: height 1s;
+  interpolate-size: allow-keywords;
+  overflow: hidden;
+}
+
+
+.tarjeta-ubicacion:hover {
+  height: auto;
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 0, 0.6);
+}
+
+.residentes {
+  margin-top: 1rem;
+  width: 100%;
+  text-align: left;
+}
+
+.cargando {
+  color: #66fcf1;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+.lista-personajes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.personaje {
+  background: #222831;
+  border: 1px solid #45a29e;
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 180px;
+  box-shadow: 0 2px 8px rgba(102, 252, 241, 0.15);
+  transition: transform 0.2s;
+}
+.personaje:hover {
+  transform: scale(1.04);
+  border-color: #66fcf1;
+}
+.personaje img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid #66fcf1;
+  object-fit: cover;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.nombre {
+  font-weight: bold;
+  color: #66fcf1;
+}
+.especie {
+  font-size: 0.9em;
+  color: #c5c6c7;
+}
+.status {
+  font-size: 0.85em;
+  color: #45a29e;
+}
+.btn-detalles {
+  margin-top: 1rem;
+  padding: 0.5rem 1.2rem;
+  background: #66fcf1;
+  color: #1f2833;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-detalles:hover {
+  background: #45a29e;
+  color: #fff;
+}

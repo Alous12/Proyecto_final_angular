@@ -1,0 +1,8 @@
+<div class="tarjeta-personaje">
+    <img [src]="personajes?.image" alt="Imagen de {{personajes?.name}}" />
+    <p>{{personajes?.name}}</p>
+    <p>{{personajes?.created}}</p>
+    <p>{{personajes?.status}}</p>
+    <p>{{personajes?.species}}</p>
+     <a [routerLink]="['/detalles-personajes', personajes?.id]" class="detalles">Ver detalles</a>
+</div>

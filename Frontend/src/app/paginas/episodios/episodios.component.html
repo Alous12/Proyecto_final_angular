@@ -1,0 +1,17 @@
+<!-- Filtros estilo personajes -->
+<div class="filtros">
+  <input [(ngModel)]="name" name="name" placeholder="Nombre (ej. Pilot)" />
+  <input [(ngModel)]="episode" name="episode" placeholder="Código (ej. S01E01)" />
+  <button (click)="buscar()">Filtrar</button>
+</div>
+
+<!-- Contenedor de episodios -->
+<div class="contenedor-episodios">
+  @for (episode of ListadoEpisodios; track episode.id) {
+    <div>
+      <app-episode [episodios]="episode"></app-episode>
+    </div>
+  } @empty {
+    <p>No existen episodios</p>
+  }
+</div>
