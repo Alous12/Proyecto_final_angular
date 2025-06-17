@@ -18,6 +18,26 @@ export class EpisodesService {
     return this.episodeRepo.findOneBy({ id });
   }
 
+    findManyByIds(ids: number[]): Promise<Episode[]> {
+        return this.episodeRepo.find({
+            where: ids.map((id) => ({ id })),
+        });
+    }
+
+    filterEpisodes(query: any): Promise<Episode[]> {
+        const qb = this.episodeRepo.createQueryBuilder('episode');
+        if (query.name) {
+            qb.andWhere('episode.name LIKE :name', { name: `%${query.name}%` });
+        }
+        if (query.episode) {
+            qb.andWhere('episode.episode = :episode', { episode: query.episode });
+        }
+        if (query.air_date) {
+            qb.andWhere('episode.air_date = :air_date', { air_date: query.air_date });
+        }
+        return qb.getMany();
+    }
+
     create(episode: Partial<Episode>): Promise<Episode> {
         const newEpisode = this.episodeRepo.create(episode);
         return this.episodeRepo.save(newEpisode);

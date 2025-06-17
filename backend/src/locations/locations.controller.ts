@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { LocationsService } from './locations.service';
 import { Location } from './location.entity';
 
@@ -10,6 +10,18 @@ export class LocationsController {
     findAll(): Promise<Location[]> {
         return this.locationsService.findAll();
     }
+
+    @Get('multiple')
+    getMultiple(@Query('ids') ids: string): Promise<Location[]> {
+        const parsedIds = ids.split(',').map((id) => Number(id.trim()));
+        return this.locationsService.findManyByIds(parsedIds);
+    }
+
+    @Get('filter')
+    filterLocations(@Query() query: any): Promise<Location[]> {
+        return this.locationsService.filterLocations(query);
+    }
+
     @Get(':id')
     findOne(@Param('id') id: number): Promise<Location | null> {
         return this.locationsService.findOne(id);
