@@ -1,4 +1,5 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Character } from '../characters/character.entity';
 
 @Entity({ name: 'episodes' })
 export class Episode {
@@ -14,12 +15,12 @@ export class Episode {
   @Column({ length: 20 })
   episode: string; // Ej: S01E01
 
-  @Column('simple-array') // URLs de personajes separados por comas
-  characters: string[];
+  @ManyToMany(() => Character, (character) => character.episodes)
+  characters: Character[];
 
   @Column({ length: 500 })
   url: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  created: Date;
+  created: Date;
 }

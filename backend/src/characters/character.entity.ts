@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, JoinTable, ManyToMany } from 'typeorm';
 import { Location } from '../locations/location.entity';
 import { Episode } from 'src/episodes/episode.entity';
 
@@ -35,12 +35,11 @@ export class Character {
 
   @ManyToMany(() => Episode, (episode) => episode.characters, { eager: true })
   @JoinTable({
-  name: 'character_episodes', // tabla intermedia
+    name: 'character_episodes', // tabla intermedia
     joinColumn: { name: 'character_id', referencedColumnName: 'id' },
     inverseJoinColumn: { name: 'episode_id', referencedColumnName: 'id' },
   })
   episodes: Episode[];
-  url: string;
 
   @Column({ length: 500 })
 
