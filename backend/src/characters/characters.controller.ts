@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { CharactersService } from './characters.service';
 import { Character } from './character.entity';
 
@@ -11,10 +11,26 @@ export class CharactersController {
     return this.charactersService.findAll();
   }
 
+  @Get('multiple')
+    getMultiple(@Query('ids') ids: string): Promise<Character[]> {
+    const parsedIds = ids.split(',').map((id) => Number(id.trim()));
+    return this.charactersService.findManyByIds(parsedIds);
+  }
+  
+  @Get('filter')
+    filterCharacters(@Query() query: any): Promise<Character[]> {
+    return this.charactersService.filterCharacters(query);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: number): Promise<Character | null> {
     return this.charactersService.findOne(id);
   }
+
+  
+
+  
+
 
   @Post()
   create(@Body() character: Partial<Character>): Promise<Character> {

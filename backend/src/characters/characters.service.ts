@@ -17,6 +17,37 @@ export class CharactersService {
   findOne(id: number): Promise<Character | null> {
     return this.characterRepo.findOneBy({ id });
   }
+  
+  findManyByIds(ids: number[]): Promise<Character[]> {
+      return this.characterRepo.find({
+      where: ids.map((id) => ({ id })),
+    });
+  } 
+
+
+  filterCharacters(query: any): Promise<Character[]> {
+    const qb = this.characterRepo.createQueryBuilder('character');
+
+    if (query.name) {
+      qb.andWhere('character.name LIKE :name', { name: `%${query.name}%` });
+    }
+    if (query.status) {
+      qb.andWhere('character.status = :status', { status: query.status });
+    }
+    if (query.species) {
+      qb.andWhere('character.species = :species', { species: query.species });
+    }
+    if (query.type) {
+      qb.andWhere('character.type = :type', { type: query.type });
+    }
+    if (query.gender) {
+      qb.andWhere('character.gender = :gender', { gender: query.gender });
+    }
+
+    return qb.getMany();
+  }
+
+
 
   create(character: Partial<Character>): Promise<Character> {
     const newCharacter = this.characterRepo.create(character);
