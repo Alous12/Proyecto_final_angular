@@ -1,19 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { SupabaseService } from 'src/supabase/supabase.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Location } from './location.entity';
 
 @Injectable()
 export class LocationsService {
-    constructor(private readonly supabaseService: SupabaseService) {}
-    async findAll() {
-        const supabase = this.supabaseService.getClient();
-        const { data, error } = await supabase
-            .from('locations')
-            .select('*');
+constructor(
+    @InjectRepository(Location)
+    private readonly locationRepo: Repository<Location>,
+  ) {}
 
-        if (error) {
-            throw new Error(`Error fetching locations: ${error.message}`);
-        }
-
-        return data;
-    }
+  findAll(): Promise<Location[]> {
+    return this.locationRepo.find();
+  }  
 }

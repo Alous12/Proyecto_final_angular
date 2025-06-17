@@ -1,19 +1,16 @@
 import { Injectable } from '@nestjs/common';
-import { SupabaseService } from 'src/supabase/supabase.service';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { Episode } from './episode.entity';
 
 @Injectable()
 export class EpisodesService {
-    constructor(private readonly supabaseService: SupabaseService) {}
-    async findAll() {
-        const supabase = this.supabaseService.getClient();
-        const { data, error } = await supabase
-            .from('episodes')
-            .select('*');
+    constructor(
+    @InjectRepository(Episode)
+    private readonly episodeRepo: Repository<Episode>,
+  ) {}
 
-        if (error) {
-            throw new Error(`Error fetching episodes: ${error.message}`);
-        }
-
-        return data;
-    }
+  findAll(): Promise<Episode[]> {
+    return this.episodeRepo.find();
+  }
 }
