@@ -5,10 +5,8 @@ import { AppService } from './app.service';
 import { EpisodesModule } from './episodes/episodes.module';
 import { LocationsModule } from './locations/locations.module';
 import { CharactersModule } from './characters/characters.module';
-import { SupabaseModule } from './supabase/supabase.module';
-import { ConfigModule } from '@nestjs/config';
 @Module({
-  imports: [EpisodesModule, LocationsModule,
+  imports: [EpisodesModule, LocationsModule,CharactersModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'sql5.freesqldatabase.com',
@@ -17,7 +15,8 @@ import { ConfigModule } from '@nestjs/config';
       password: '1adKZ8GRXC',
       database: 'sql5785187',
       autoLoadEntities: true,
-      synchronize: true, // Desactiva en producción
+      synchronize: true,
+      dropSchema: false,  // Desactiva en producción
       }),
   ],
   controllers: [AppController],
