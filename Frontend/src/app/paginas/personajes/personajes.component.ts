@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CharacterComponent } from '../../elementos/character/character.component';
-import { Character, results } from '../../interfaces/character';
+import { Character } from '../../interfaces/character';
 import { CharacterService } from '../../servicios/character.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -15,7 +15,7 @@ import { FormsModule } from '@angular/forms';
 
 
 export class PersonajesComponent {
-  ListadoPersonajes: results[] = [];
+  ListadoPersonajes: Character[] = [];
   searchText = '';
   status = '';
   species = '';
@@ -37,7 +37,7 @@ export class PersonajesComponent {
 
     servicio.subscribe({
       next: (data) => {
-        this.ListadoPersonajes = data.results;
+        this.ListadoPersonajes = data;
         this.isLoading = false;
       },
       error: (err) => {

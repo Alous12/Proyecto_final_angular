@@ -7,24 +7,39 @@ import { Location } from '../interfaces/location';
 })
 export class LocationService {
 
-  private apiUrl = 'https://rickandmortyapi.com/api/location';
+  // Cambia la URL base para apuntar a tu backend
+  private backendUrl = 'http://localhost:3000/locations';
+
   constructor(private http:HttpClient) { }
-
-  obtenerUbicaciones(): Observable<Location> {
-    return this.http.get<Location>(this.apiUrl);
-  }
-
-  obtenerUbicacionesFiltradas(filtros: { [key: string]: string }): Observable<Location> {
-    const queryParams = new URLSearchParams(filtros).toString();
-    return this.http.get<Location>(`${this.apiUrl}/?${queryParams}`);
-  }
-
 
   obtenerPersonajesDeUbicacion(characterUrls: string[]): Observable<any[]> {
     const requests = characterUrls.map(url => this.http.get<any>(url));
     return requests.length ? forkJoin(requests) : of([]);
   }
 
+  // Obtener todas las ubicaciones desde el backend
+  obtenerUbicaciones(): Observable<Location[]> {
+    return this.http.get<Location[]>(this.backendUrl);
+  }
 
+  // Obtener una ubicación por ID desde el backend
+  obtenerUbicacionPorId(id: number): Observable<Location> {
+    return this.http.get<Location>(`${this.backendUrl}/${id}`);
+  }
 
+  // Filtrar ubicaciones desde el backend
+  obtenerUbicacionesFiltradas(filtros: { [key: string]: string }): Observable<Location[]> {
+    const queryParams = new URLSearchParams(filtros).toString();
+    return this.http.get<Location[]>(`${this.backendUrl}/filter?${queryParams}`);
+  }
+
+  // Actualizar una ubicación por ID
+  actualizarUbicacion(id: number, data: Partial<Location>): Observable<Location> {
+    return this.http.put<Location>(`${this.backendUrl}/${id}`, data);
+  }
+
+  // Eliminar una ubicación por ID
+  eliminarUbicacion(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.backendUrl}/${id}`);
+  }
 }

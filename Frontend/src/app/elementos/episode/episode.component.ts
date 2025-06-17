@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { resultsEpi } from '../../interfaces/episode';
+import { Episode } from '../../interfaces/episode';
 
 @Component({
   selector: 'app-episode',
@@ -8,6 +8,6 @@ import { resultsEpi } from '../../interfaces/episode';
   styleUrl: './episode.component.scss'
 })
 export class EpisodeComponent {
-  @Input() episodios: resultsEpi| undefined;
+  @Input() episodios: Episode| undefined;
 
 }

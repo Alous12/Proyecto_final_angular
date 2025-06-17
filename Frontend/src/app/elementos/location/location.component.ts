@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { resultUbi } from '../../interfaces/location';
+import { Location } from '../../interfaces/location';
 import { LocationService } from '../../servicios/location.service';
-import { results } from '../../interfaces/character';
+import { Character } from '../../interfaces/character';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -11,8 +11,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './location.component.scss'
 })
 export class LocationComponent implements OnInit {
-  @Input() ubicacion: resultUbi | undefined;
-  personajes: results[] = [];
+  @Input() ubicacion: Location | undefined;
+  personajes: Character[] = [];
   cargando: boolean = false;
 
   constructor(private locationService: LocationService) {}

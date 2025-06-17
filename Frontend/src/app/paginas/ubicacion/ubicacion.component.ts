@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { LocationComponent } from '../../elementos/location/location.component';
 import { LocationService } from '../../servicios/location.service';
-import { resultUbi } from '../../interfaces/location';
+import { Location } from '../../interfaces/location';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './ubicacion.component.scss'
 })
 export class UbicacionComponent {
-  ListadoUbicaciones: resultUbi[] = [];
+  ListadoUbicaciones: Location[] = [];
 
   name = '';
   type = '';
@@ -21,8 +21,8 @@ export class UbicacionComponent {
   locationService: LocationService = inject(LocationService);
 
   constructor() {
-    this.locationService.obtenerUbicaciones().subscribe(data => {
-      this.ListadoUbicaciones = data['results'];
+    this.locationService.obtenerUbicaciones().subscribe((data: Location[]) => {
+      this.ListadoUbicaciones = data || [];
     });
   }
 
@@ -34,7 +34,7 @@ export class UbicacionComponent {
 
     this.locationService.obtenerUbicacionesFiltradas(filtros)
       .subscribe(data => {
-        this.ListadoUbicaciones = data['results'];
+        this.ListadoUbicaciones = data || [];
       });
   }
 }

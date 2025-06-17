@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CharacterService } from '../../servicios/character.service';
-import { Character, results } from '../../interfaces/character';
+import { Character } from '../../interfaces/character';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common';
 export class DetallesPersonajesComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   personajeService: CharacterService = inject(CharacterService);
-  detallesPersonaje: results | undefined;
+  detallesPersonaje: Character | undefined;
   episodios: any[] = [];
 
   constructor() {

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocationService } from '../../servicios/location.service';
-import { resultUbi } from '../../interfaces/location';
-import { results } from '../../interfaces/character';
+import { Location } from '../../interfaces/location';
+import { Character } from '../../interfaces/character';
 import { CharacterComponent } from '../../elementos/character/character.component';
 
 @Component({
@@ -12,8 +12,8 @@ import { CharacterComponent } from '../../elementos/character/character.componen
   styleUrl: './detalles-ubicacion.component.scss'
 })
 export class DetallesUbicacionComponent implements OnInit {
-  ubicacion: resultUbi | undefined;
-  personajes: results[] = [];
+  ubicacion: Location | undefined;
+  personajes: Character[] = [];
   cargando = true;
 
   constructor(private route: ActivatedRoute, private locationService: LocationService) {}
@@ -23,7 +23,7 @@ export class DetallesUbicacionComponent implements OnInit {
     if (id) {
       this.locationService.obtenerUbicacionesFiltradas({ id }).subscribe({
         next: (data) => {
-          this.ubicacion = data.results[0];
+          this.ubicacion = data[0];
           if (this.ubicacion && this.ubicacion.residents.length > 0) {
             this.locationService.obtenerPersonajesDeUbicacion(this.ubicacion.residents).subscribe({
               next: (personajes) => {
