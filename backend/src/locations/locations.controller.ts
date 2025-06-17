@@ -1,4 +1,4 @@
-import { Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { LocationsService } from './locations.service';
 import { Location } from './location.entity';
 
@@ -16,17 +16,17 @@ export class LocationsController {
     }
 
     @Post()
-    create(@Param() location: Partial<Location>): Promise<Location> {
-        return this.locationsService.create(location);
+    create(@Body() location: Partial<Location>): Promise<Location> {
+    return this.locationsService.create(location);
     }
 
     @Put(':id')
-    update(@Param('id') id: string, @Param() data: Partial<Location>): Promise<Location> {
+    update(@Param('id') id: string, @Body() data: Partial<Location>): Promise<Location> {
         return this.locationsService.update(Number(id), data);
     }
 
     @Patch(':id')
-    partialUpdate(@Param('id') id: string, @Param() data: Partial<Location>): Promise<Location> {
+    partialUpdate(@Param('id') id: string, @Body() data: Partial<Location>): Promise<Location> {
         return this.locationsService.update(Number(id), data);
     }
 
