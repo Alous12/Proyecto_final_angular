@@ -1,22 +1,25 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('episodes') // nombre real de la tabla en MySQL
+@Entity({ name: 'episodes' })
 export class Episode {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ length: 255 })
   name: string;
 
-  @Column({ name: 'air_date', length: 100 })
-  airDate: string;
+  @Column({ length: 100 })
+  air_date: string;
 
-  @Column({ name: 'episode_code', length: 20 })
-  episodeCode: string;
+  @Column({ length: 20 })
+  episode: string; // Ej: S01E01
+
+  @Column('simple-array') // URLs de personajes separados por comas
+  characters: string[];
 
   @Column({ length: 500 })
   url: string;
 
-  @Column()
-  created: Date;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created: Date;
 }

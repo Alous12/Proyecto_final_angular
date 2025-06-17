@@ -1,22 +1,25 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity('locations') // nombre de la tabla en MySQL
+@Entity({ name: 'locations' })
 export class Location {
-  @PrimaryColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({ length: 255 })
   name: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 100 })
   type: string;
 
-  @Column({ length: 255 })
+  @Column({ length: 100 })
   dimension: string;
+
+  @Column('simple-array') // URLs de residentes separados por comas
+  residents: string[];
 
   @Column({ length: 500 })
   url: string;
 
-  @Column()
-  created: Date;
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  created: Date;
 }

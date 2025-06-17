@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { Episode } from './episode.entity';
 import { EpisodesService } from './episodes.service';
 
@@ -10,4 +10,31 @@ export class EpisodesController {
   findAll(): Promise<Episode[]> {
     return this.episodesService.findAll();
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: number): Promise<Episode | null> {
+    return this.episodesService.findOne(id);
+  }
+
+  @Post()
+  create(@Body() episode: Partial<Episode>): Promise<Episode> { 
+    return this.episodesService.create(episode);
+  } 
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() data: Partial<Episode>): Promise<Episode> {
+    return this.episodesService.update(Number(id), data);
+  }
+
+  @Patch(':id')
+  partialUpdate(@Param('id') id: string, @Body() data: Partial<Episode>): Promise<Episode> { 
+    return this.episodesService.update(Number(id), data);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: number): Promise<void> {
+    return this.episodesService.remove(id);
+  }
+
+
 }
