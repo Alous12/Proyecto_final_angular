@@ -49,9 +49,9 @@ export class CharactersService {
 
 
 
-  create(character: Partial<Character>): Promise<Character> {
-    const newCharacter = this.characterRepo.create(character);
-    return this.characterRepo.save(newCharacter);
+  async create(data: Partial<Character>): Promise<Character> {
+    const character = this.characterRepo.create(data);
+    return this.characterRepo.save(character);
   }
 
   async update(id: number, data: Partial<Character>): Promise<Character> {

@@ -1,11 +1,8 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  CreateDateColumn,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, JoinColumn, ManyToMany, JoinTable } from 'typeorm';
+import { Location } from '../locations/location.entity';
+import { Episode } from 'src/episodes/episode.entity';
 
-@Entity({ name: 'characters' }) // Esto asegura el nombre exacto de la tabla
+@Entity('characters')
 export class Character {
   @PrimaryGeneratedColumn()
   id: number;
@@ -25,20 +22,27 @@ export class Character {
   @Column({ length: 100 })
   gender: string;
 
-  @Column({ type: 'simple-json' })
-  origin: { name: string; url: string };
+  @ManyToOne(() => Location, { eager: true }) // carga automáticamente la ubicación
+  @JoinColumn({ name: 'origin_id' })
+  origin: Location;
 
-  @Column({ type: 'simple-json' })
-  location: { name: string; url: string };
+  @ManyToOne(() => Location, { eager: true })
+  @JoinColumn({ name: 'location_id' })
+  location: Location;
 
   @Column({ length: 500 })
   image: string;
 
-  @Column({ type: 'simple-array' }) // guarda como 'url1,url2,...'
-  episode: string[];
+  @ManyToMany(() => Episode, (episode) => episode.characters, { eager: true })
+  @JoinTable({
+  name: 'character_episodes', // tabla intermedia
+    joinColumn: { name: 'character_id', referencedColumnName: 'id' },
+    inverseJoinColumn: { name: 'episode_id', referencedColumnName: 'id' },
+  })
+  episodes: Episode[];
+  url: string;
 
   @Column({ length: 500 })
-  url: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created: Date;
