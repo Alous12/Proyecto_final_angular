@@ -27,11 +27,6 @@ export class CharactersController {
     return this.charactersService.findOne(id);
   }
 
-  
-
-  
-
-
   @Post()
   create(@Body() character: Partial<Character>): Promise<Character> {
     return this.charactersService.create(character);
