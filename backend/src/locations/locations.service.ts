@@ -17,6 +17,27 @@ constructor(
   findOne(id: number): Promise<Location | null> {
     return this.locationRepo.findOneBy({ id });
   }
+
+  findManyByIds(ids: number[]): Promise<Location[]> {
+    return this.locationRepo.find({
+      where: ids.map((id) => ({ id })),
+    });
+  }
+
+  filterLocations(query: any): Promise<Location[]> {
+    const qb = this.locationRepo.createQueryBuilder('location');
+    if (query.name) {
+      qb.andWhere('location.name LIKE :name', { name: `%${query.name}%` });
+    }
+    if (query.type) {
+      qb.andWhere('location.type = :type', { type: query.type });
+    }
+    if (query.dimension) {
+      qb.andWhere('location.dimension = :dimension', { dimension: query.dimension });
+    }
+    return qb.getMany();
+  }
+
   create(location: Partial<Location>): Promise<Location> {
     const newLocation = this.locationRepo.create(location);
     return this.locationRepo.save(newLocation);

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Put, Query } from '@nestjs/common';
 import { Episode } from './episode.entity';
 import { EpisodesService } from './episodes.service';
 
@@ -9,6 +9,16 @@ export class EpisodesController {
   @Get()
   findAll(): Promise<Episode[]> {
     return this.episodesService.findAll();
+  }
+
+  @Get('multiple')
+  getMultiple(@Query('ids') ids: string): Promise<Episode[]> {  
+    const parsedIds = ids.split(',').map((id) => Number(id.trim()));
+    return this.episodesService.findManyByIds(parsedIds);
+  }
+  @Get('filter')
+  filterEpisodes(@Query() query: any): Promise<Episode[]> {
+    return this.episodesService.filterEpisodes(query);
   }
 
   @Get(':id')
