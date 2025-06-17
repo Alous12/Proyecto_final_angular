@@ -1,3 +1,5 @@
+import { Episode } from "./episode";
+
 export interface Character {
   id: number;
   name: string;
@@ -8,7 +10,7 @@ export interface Character {
   origin: { name: string; url: string };
   location: { name: string; url: string };
   image: string;
-  episode: string[];
+  episodes: Episode[];
   url: string;
   created: string | Date;
 }

@@ -11,9 +11,10 @@ export class CharacterService {
 
   constructor(private http: HttpClient) { }
 
-  obtenerMultiplesEpisodiosPorId(ids: number[]): Observable<any> {
-  const idsString = ids.join(',');
-  return this.http.get<any>(`${this.backendUrl}/${idsString}`);
+  obtenerMultiplesEpisodiosPorId(ids: number[]): Observable<any[]> {
+    const idsString = ids.join(',');
+    // Suponiendo que la ruta correcta para episodios es /episodes
+    return this.http.get<any[]>(`http://localhost:3000/episodes/${idsString}`);
   }
 
   // Obtener todos los personajes desde el backend
