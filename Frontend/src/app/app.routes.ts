@@ -7,6 +7,8 @@ import { UbicacionComponent } from './paginas/ubicacion/ubicacion.component';
 import { EpisodiosComponent } from './paginas/episodios/episodios.component';
 import { DetallesPersonajesComponent } from './paginas/detalles-personajes/detalles-personajes.component';
 import { DetallesUbicacionComponent } from './paginas/detalles-ubicacion/detalles-ubicacion.component';
+import { AgregarPersonajeComponent } from './paginas/agregar-personaje/agregar-personaje.component';
+import { EditarPersonajeComponent } from './paginas/editar-personaje/editar-personaje.component';
 
 export const routes: Routes = [
 
@@ -17,6 +19,8 @@ export const routes: Routes = [
     {path: 'episodios', component: EpisodiosComponent},
     {path: 'detalles-personajes/:id', component: DetallesPersonajesComponent},
     {path: 'detalles-ubicacion/:id', component: DetallesUbicacionComponent},
+    { path: 'agregar-personaje', component: AgregarPersonajeComponent },
+    { path: 'editar-personaje/:id', component: EditarPersonajeComponent },
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', component: PaginaNoEncontrontadaComponent},
     

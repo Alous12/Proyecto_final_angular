@@ -27,19 +27,35 @@
     font-size: 0.95rem;
   }
 
-  .detalles {
+   .detalles, .editar {
     display: inline-block;
     margin-top: 0.8rem;
+    margin-left: 0.5rem;
     padding: 0.5rem 1rem;
-    background-color: #66fcf1;
-    color: #0b0c10;
-    text-decoration: none;
-    border-radius: 5px;
+    border-radius: 8px;
     font-weight: bold;
-    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
 
+  .detalles {
+    background: #66fcf1;
+    color: #1f2833;
     &:hover {
-      background-color: #2ecc71;
+      background: #2ecc71;
+      color: #fff;
+    }
+  }
+
+  .editar {
+    background: #45a29e;
+    color: #1f2833;
+    &:hover {
+      background:  #2ecc71;
+      color: #fff;
     }
   }
 }
+

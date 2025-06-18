@@ -1,0 +1,11 @@
+<h2>Editar Personaje</h2>
+<form *ngIf="personaje" (ngSubmit)="guardar()">
+  <label>Nombre: <input [(ngModel)]="personaje.name" name="name" required /></label><br />
+  <label>Status: <input [(ngModel)]="personaje.status" name="status" /></label><br />
+  <label>Especie: <input [(ngModel)]="personaje.species" name="species" /></label><br />
+  <label>Género: <input [(ngModel)]="personaje.gender" name="gender" /></label><br />
+  <label>Imagen (URL): <input [(ngModel)]="personaje.image" name="image" /></label><br />
+  <button type="submit">Guardar</button>
+  <button type="button" (click)="eliminar()">Eliminar</button>
+</form>
+

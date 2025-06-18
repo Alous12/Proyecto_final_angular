@@ -4,5 +4,6 @@
     <p>{{personajes?.created}}</p>
     <p>{{personajes?.status}}</p>
     <p>{{personajes?.species}}</p>
-     <a [routerLink]="['/detalles-personajes', personajes?.id]" class="detalles">Ver detalles</a>
+    <a [routerLink]="['/detalles-personajes', personajes?.id]" class="detalles">Ver detalles</a>
+    <a [routerLink]="['/editar-personaje', personajes?.id]" class="editar">Editar personaje</a>
 </div>

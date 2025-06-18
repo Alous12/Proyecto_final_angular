@@ -4,6 +4,7 @@ import { Character } from '../../interfaces/character';
 import { CharacterService } from '../../servicios/character.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personajes',
@@ -25,8 +26,12 @@ export class PersonajesComponent {
 
   characterService: CharacterService = inject(CharacterService);
 
-  constructor() {
+  constructor(private router: Router) {
     this.cargarPersonajes();
+  }
+
+  irAgregarPersonaje() {
+    this.router.navigate(['/agregar-personaje']);
   }
 
   cargarPersonajes(filtros?: { [key: string]: string }) {

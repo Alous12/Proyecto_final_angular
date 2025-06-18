@@ -1,0 +1,12 @@
+<div class="formulario-personaje">
+  <h2>Agregar Personaje</h2>
+  <form (ngSubmit)="agregarPersonaje()">
+    <input [(ngModel)]="character.name" name="name" placeholder="Nombre" required />
+    <input [(ngModel)]="character.status" name="status" placeholder="Estado" required />
+    <input [(ngModel)]="character.species" name="species" placeholder="Especie" required />
+    <input [(ngModel)]="character.gender" name="gender" placeholder="Género" required />
+    <input [(ngModel)]="character.image" name="image" placeholder="URL Imagen" required />
+    <button type="submit" [disabled]="isLoading">Agregar</button>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+  </form>
+</div>

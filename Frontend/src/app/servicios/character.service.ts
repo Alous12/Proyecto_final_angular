@@ -42,4 +42,8 @@ export class CharacterService {
   eliminarPersonaje(id: number): Observable<void> {
     return this.http.delete<void>(`${this.backendUrl}/${id}`);
   }
+  // Agregar un nuevo personaje 
+  crearPersonaje(data: Character): Observable<Character> {
+    return this.http.post<Character>(this.backendUrl, data);
+  }
 }
