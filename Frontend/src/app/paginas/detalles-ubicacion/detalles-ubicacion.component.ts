@@ -21,20 +21,13 @@ export class DetallesUbicacionComponent implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      this.locationService.obtenerUbicacionesFiltradas({ id }).subscribe({
+      this.locationService.obtenerUbicacionPorId(Number(id)).subscribe({
         next: (data) => {
-          this.ubicacion = data[0];
-          if (this.ubicacion && this.ubicacion.residents.length > 0) {
-            this.locationService.obtenerPersonajesDeUbicacion(this.ubicacion.residents).subscribe({
-              next: (personajes) => {
-                this.personajes = personajes;
-                this.cargando = false;
-              },
-              error: () => this.cargando = false
-            });
-          } else {
-            this.cargando = false;
+          this.ubicacion = data;
+          if (this.ubicacion?.presentCharacters?.length > 0) {
+            this.personajes = this.ubicacion.presentCharacters;
           }
+          this.cargando = false;
         },
         error: () => this.cargando = false
       });

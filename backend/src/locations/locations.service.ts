@@ -11,12 +11,18 @@ constructor(
   ) {}
 
   findAll(): Promise<Location[]> {
-    return this.locationRepo.find();
-  }  
-
-  findOne(id: number): Promise<Location | null> {
-    return this.locationRepo.findOneBy({ id });
+    return this.locationRepo.find({
+    relations: ['presentCharacters'],
+    });
   }
+
+findOne(id: number): Promise<Location | null> {
+  return this.locationRepo.findOne({
+    where: { id },
+    relations: ['presentCharacters'],
+  });
+}
+
 
   findManyByIds(ids: number[]): Promise<Location[]> {
     return this.locationRepo.find({

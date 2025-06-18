@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '../../interfaces/location';
-import { LocationService } from '../../servicios/location.service';
 import { Character } from '../../interfaces/character';
 import { RouterLink } from '@angular/router';
 
@@ -15,20 +14,11 @@ export class LocationComponent implements OnInit {
   personajes: Character[] = [];
   cargando: boolean = false;
 
-  constructor(private locationService: LocationService) {}
-
   ngOnInit() {
-    if (this.ubicacion && this.ubicacion.residents && this.ubicacion.residents.length > 0) {
-      this.cargando = true;
-      this.locationService.obtenerPersonajesDeUbicacion(this.ubicacion.residents).subscribe({
-        next: (personajes) => {
-          this.personajes = personajes;
-          this.cargando = false;
-        },
-        error: () => {
-          this.cargando = false;
-        }
-      });
+    // Los personajes ya están en presentCharacters
+    if (this.ubicacion && this.ubicacion.presentCharacters && this.ubicacion.presentCharacters.length > 0) {
+         this.personajes = this.ubicacion.presentCharacters;
     }
+
   }
 }

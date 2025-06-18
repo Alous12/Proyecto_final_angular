@@ -1,17 +1,16 @@
-
 <div class="filtros">
-    <input [(ngModel)]="name" name="name" placeholder="Nombre de ubicación" />
-    <input [(ngModel)]="type" name="type" placeholder="Tipo de ubicación" />
-    <button (click)= "buscar()">Filtrar</button>
+  <input [(ngModel)]="name" name="name" placeholder="Nombre de ubicación" />
+  <input [(ngModel)]="type" name="type" placeholder="Tipo de ubicación" />
+  <button (click)="buscar()">Filtrar</button>
+  <button class="agregar" (click)="irAgregarUbicacion()">Agregar ubicación</button>
 </div>
 
 <div class="contenedor-ubicaciones">
-    @for (ubicacion of ListadoUbicaciones; track ubicacion.id) {
-        <div>
-            <app-location [ubicacion]="ubicacion"> </app-location>
-        </div>
-    } @empty {
-        <p>No existen ubicaciones</p>
-    }
+  @for (ubicacion of ListadoUbicaciones; track ubicacion.id) {
+    <div>
+      <app-location [ubicacion]="ubicacion"></app-location>
+    </div>
+  } @empty {
+    <p>No existen ubicaciones</p>
+  }
 </div>
-

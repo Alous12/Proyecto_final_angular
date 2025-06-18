@@ -22,9 +22,7 @@
 
 <div class="contenedor-personajes">
   @for (character of ListadoPersonajes; track character.id) {
-    <div>
-      <app-character [personajes]="character"></app-character>
-    </div>
+    <app-character [personajes]="character"></app-character>
   } @empty {
     <p *ngIf="!isLoading && !errorMessage">No existen personajes</p>
   }

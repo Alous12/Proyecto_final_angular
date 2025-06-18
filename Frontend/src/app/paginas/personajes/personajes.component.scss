@@ -1,9 +1,16 @@
-.contenedor-personajes{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+.contenedor-personajes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem;
+  max-width: 1200px; // Limita el ancho del grid (4x 220px + gaps)
+  margin-left: auto;
+  margin-right: auto;
 }
+
+
 :host {
   display: block;
   background-color: #0b0c10;

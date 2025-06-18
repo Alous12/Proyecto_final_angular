@@ -1,0 +1,8 @@
+<h2>Editar Ubicacion</h2>
+<form *ngIf="ubicacion" (ngSubmit)="guardar()">
+  <label>Nombre: <input [(ngModel)]="ubicacion.name" name="name" required /></label><br />
+  <label>Tipo: <input [(ngModel)]="ubicacion.type" name="status" /></label><br />
+  <label>Dimension: <input [(ngModel)]="ubicacion.dimension" name="species" /></label><br />
+  <button type="submit">Guardar</button>
+  <button type="button" (click)="eliminar()">Eliminar</button>
+</form>

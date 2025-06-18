@@ -1,13 +1,13 @@
 .tarjeta-personaje {
-  background-color: #1f2833;
-  border: 2px solid #66fcf1;
-  border-radius: 15px;
-  padding: 1rem;
+  border: 2px solid #00f5d4;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+  background-color: #1c1c1c;
+  color: #fff;
+  width: 100%;
   text-align: center;
-  box-shadow: 0 0 15px rgba(102, 252, 241, 0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  color: #ffffff;
-  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
 
   &:hover {
     transform: scale(1.05);
@@ -15,11 +15,10 @@
   }
 
   img {
-    width: 100%;
-    border-radius: 10px;
-    border: 3px solid #45a29e;
-    margin-bottom: 1rem;
-    object-fit: cover;
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
   }
 
   p {
@@ -27,7 +26,8 @@
     font-size: 0.95rem;
   }
 
-   .detalles, .editar {
+  .detalles,
+  .editar {
     display: inline-block;
     margin-top: 0.8rem;
     margin-left: 0.5rem;
@@ -43,6 +43,7 @@
   .detalles {
     background: #66fcf1;
     color: #1f2833;
+
     &:hover {
       background: #2ecc71;
       color: #fff;
@@ -52,10 +53,10 @@
   .editar {
     background: #45a29e;
     color: #1f2833;
+
     &:hover {
-      background:  #2ecc71;
+      background: #2ecc71;
       color: #fff;
     }
   }
 }
-

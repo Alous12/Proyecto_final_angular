@@ -3,11 +3,13 @@ import { LocationComponent } from '../../elementos/location/location.component';
 import { LocationService } from '../../servicios/location.service';
 import { Location } from '../../interfaces/location';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ubicacion',
   standalone: true,
-  imports: [LocationComponent, FormsModule],
+  imports: [LocationComponent, FormsModule,CommonModule],
   templateUrl: './ubicacion.component.html',
   styleUrl: './ubicacion.component.scss'
 })
@@ -20,7 +22,7 @@ export class UbicacionComponent {
 
   locationService: LocationService = inject(LocationService);
 
-  constructor() {
+  constructor(private router: Router) {
     this.locationService.obtenerUbicaciones().subscribe((data: Location[]) => {
       this.ListadoUbicaciones = data || [];
     });
@@ -36,5 +38,9 @@ export class UbicacionComponent {
       .subscribe(data => {
         this.ListadoUbicaciones = data || [];
       });
+  }
+
+  irAgregarUbicacion() {
+    this.router.navigate(['/agregar-ubicacion']);
   }
 }

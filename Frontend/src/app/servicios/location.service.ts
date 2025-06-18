@@ -42,4 +42,8 @@ export class LocationService {
   eliminarUbicacion(id: number): Observable<void> {
     return this.http.delete<void>(`${this.backendUrl}/${id}`);
   }
+
+  crearUbicacion(data: Location): Observable<Location> {
+    return this.http.post<Location>(this.backendUrl, data);
+  }
 }

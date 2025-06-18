@@ -9,6 +9,8 @@ import { DetallesPersonajesComponent } from './paginas/detalles-personajes/detal
 import { DetallesUbicacionComponent } from './paginas/detalles-ubicacion/detalles-ubicacion.component';
 import { AgregarPersonajeComponent } from './paginas/agregar-personaje/agregar-personaje.component';
 import { EditarPersonajeComponent } from './paginas/editar-personaje/editar-personaje.component';
+import { EditarUbicacionComponent } from './paginas/editar-ubicacion/editar-ubicacion.component';
+import { AgregarUbicacionComponent } from './paginas/agregar-ubicacion/agregar-ubicacion.component';
 
 export const routes: Routes = [
 
@@ -20,7 +22,9 @@ export const routes: Routes = [
     {path: 'detalles-personajes/:id', component: DetallesPersonajesComponent},
     {path: 'detalles-ubicacion/:id', component: DetallesUbicacionComponent},
     { path: 'agregar-personaje', component: AgregarPersonajeComponent },
+    {path: 'agregar-ubicacion', component: AgregarUbicacionComponent},
     { path: 'editar-personaje/:id', component: EditarPersonajeComponent },
+    {path: 'editar-ubicacion/:id', component: EditarUbicacionComponent},
     {path: '', redirectTo: '/inicio', pathMatch: 'full'},
     {path: '**', component: PaginaNoEncontrontadaComponent},
     

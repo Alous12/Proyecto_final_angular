@@ -1,0 +1,10 @@
+<div class="formulario-ubicacion">
+  <h2>Agregar Personaje</h2>
+  <form (ngSubmit)="agregarUbicacion()">
+    <input [(ngModel)]="ubicacion.name" name="name" placeholder="Nombre" required />
+    <input [(ngModel)]="ubicacion.type" name="type" placeholder="Tipo" required />
+    <input [(ngModel)]="ubicacion.dimension" name="dimension" placeholder="Dimension" required />
+    <button type="submit" [disabled]="isLoading">Agregar</button>
+    <div *ngIf="errorMessage" class="error">{{errorMessage}}</div>
+  </form>
+</div>
