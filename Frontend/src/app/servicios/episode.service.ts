@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EpisodeService {
 
-  private backendUrl = 'http://localhost:3000/episodes';
+  private backendUrl = 'https://proyecto-final-angular-mbso.onrender.com/episodes';
 
   constructor(private http: HttpClient) {}
 

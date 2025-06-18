@@ -7,14 +7,14 @@ import { Character } from '../interfaces/character';
   providedIn: 'root'
 })
 export class CharacterService {
-  private backendUrl = 'http://localhost:3000/characters';
+  private backendUrl = 'https://proyecto-final-angular-mbso.onrender.com/characters';
 
   constructor(private http: HttpClient) { }
 
   obtenerMultiplesEpisodiosPorId(ids: number[]): Observable<any[]> {
     const idsString = ids.join(',');
     // Suponiendo que la ruta correcta para episodios es /episodes
-    return this.http.get<any[]>(`http://localhost:3000/episodes/${idsString}`);
+    return this.http.get<any[]>(`https://proyecto-final-angular-mbso.onrender.com/episodes/${idsString}`);
   }
 
   // Obtener todos los personajes desde el backend

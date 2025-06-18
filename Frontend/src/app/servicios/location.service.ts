@@ -8,7 +8,7 @@ import { Location } from '../interfaces/location';
 export class LocationService {
 
   // Cambia la URL base para apuntar a tu backend
-  private backendUrl = 'http://localhost:3000/locations';
+  private backendUrl = 'https://proyecto-final-angular-mbso.onrender.com/locations';
 
   constructor(private http:HttpClient) { }
 
